@@ -1,4 +1,7 @@
-﻿namespace SumOfMultiples
+﻿using System;
+using System.Speech.Synthesis;
+
+namespace SumOfMultiples
 {
     internal class Program
     {
@@ -26,7 +29,7 @@
                 }
             }
             var list = new List<int>();
-            for (int i = 1; i <100; i ++)
+            for (int i = 1; i < 100; i++)
             {
                 if (i % 3 == 0 || i % 5 == 0) list.Add(i);
             }
@@ -36,10 +39,22 @@
             Console.WriteLine("I think at least lol, ok this is kinda fun playing around and feeling like I know what i is doing finally!");
             Console.WriteLine("");
 
-            Console.BufferHeight = 300; 
-            Console.WindowHeight = 30;
-            Console.SetWindowPosition(0, 0);
+            //Console.BufferHeight = 300; 
+            //Console.WindowHeight = 30;
+            //Console.SetWindowPosition(0, 0);
             // well that didn't work did it? Hmmm....
+
+            using (SpeechSynthesizer synth = new())
+            {
+                string text = "Well Hello, David... Are you enjoying your day at home with your feet up eating snacks?! Good, you should be! Feel better while I go torture myself with your zoo and cipher assignments some more, this was fun though, thank you!";
+                synth.Volume = 100; // 0...100
+                synth.Rate = -5;     // -10 (slow) to 10 (fast)           
+                synth.Speak(text);
+                synth.SpeakAsync(text);
+
+
+            }
         }
+
     }
 }
